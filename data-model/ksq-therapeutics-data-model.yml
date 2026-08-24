@@ -1,0 +1,170 @@
+generated: '2026-08-23'
+method: derived
+source: >-
+  openapi/_original/ksq-therapeutics-content-openapi.yml, the live route index at
+  https://ksqtx.com/wp-json/ (which enumerates every registered REST route), the /wp/v2/types and
+  /wp/v2/taxonomies discovery documents (both HTTP 200 anonymously), and the AIOSEO sitemap index
+  and /llms.txt page inventory — all fetched on 2026-08-23.
+note: >-
+  The entity graph of the WordPress deployment behind ksqtx.com. Ten post types are registered; only
+  six of them are exposed over REST, which is the single most useful fact in this file for anyone
+  trying to read KSQ content programmatically — the pipeline, platform, leadership, board-of-directors
+  and investor pages are in the sitemap and in /llms.txt but are NOT reachable through the REST API.
+id_scheme:
+  style: integer
+  note: WordPress auto-increment post/term IDs. No prefixes, no UUIDs, no tenant scoping.
+entities:
+- name: page
+  rest_base: /wp/v2/pages
+  exposed: true
+  count_observed: 9
+  key: id
+  fields:
+  - id
+  - date
+  - modified
+  - slug
+  - status
+  - link
+  - title.rendered
+  - content.rendered
+  - excerpt.rendered
+  - author
+  - featured_media
+  - parent
+  - menu_order
+  note: Content bodies carry Divi page-builder et_pb_* shortcode markup inside content.rendered.
+- name: press_release
+  rest_base: /wp/v2/press_release
+  exposed: true
+  count_observed: 39
+  key: id
+  fields:
+  - id
+  - date
+  - modified
+  - slug
+  - status
+  - link
+  - title.rendered
+  - content.rendered
+  - excerpt.rendered
+  - categories
+  - tags
+  - featured_media
+  note: The company news archive. Newest item by publish date on 2026-08-23 was 2025-04-09.
+- name: post
+  rest_base: /wp/v2/posts
+  exposed: true
+  count_observed: 0
+  key: id
+  note: Registered and reachable but empty on this deployment.
+- name: attachment
+  rest_base: /wp/v2/media
+  exposed: true
+  count_observed: 235
+  key: id
+  fields:
+  - id
+  - date
+  - slug
+  - link
+  - title.rendered
+  - media_type
+  - mime_type
+  - source_url
+  - media_details.sizes
+  - alt_text
+  - post
+- name: project
+  rest_base: /wp/v2/project
+  exposed: true
+  count_observed: 0
+  key: id
+  note: Theme-provided portfolio type; empty.
+- name: category
+  rest_base: /wp/v2/categories
+  exposed: true
+  count_observed: 1
+  key: id
+  fields:
+  - id
+  - name
+  - slug
+  - count
+  - description
+  - link
+  - parent
+- name: post_tag
+  rest_base: /wp/v2/tags
+  exposed: true
+  count_observed: 0
+  key: id
+- name: pipelines
+  rest_base: null
+  exposed: false
+  note: >-
+    KSQ content type with its own child sitemap (/pipelines-sitemap.xml) and public HTML pages —
+    /pipelines/ksq-001ex/, /pipelines/ksq-004ex/, /pipelines/ksq-4279/ — but NO route registered in
+    the wp/v2 namespace. Not reachable over REST; HTML only.
+- name: platforms
+  rest_base: null
+  exposed: false
+  note: >-
+    Own child sitemap (/platforms-sitemap.xml) and public HTML pages — /platforms/socs1/,
+    /platforms/regnase-1/, /platforms/usp1/ — but no wp/v2 route. HTML only.
+- name: leadership
+  rest_base: null
+  exposed: false
+  note: Own child sitemap (/leadership-sitemap.xml); eight profile pages exist as HTML only, no wp/v2 route.
+- name: board_of_directors
+  rest_base: null
+  exposed: false
+  note: Own child sitemap (/board_of_directors-sitemap.xml); nine profile pages exist as HTML only, no wp/v2 route.
+- name: investors
+  rest_base: null
+  exposed: false
+  note: >-
+    Ten investor pages listed in /llms.txt and reachable as HTML — Flagship Pioneering, ARCH Venture,
+    Polaris Partners, Alexandria, Alpha Wave Global, Baillie Gifford, Invus, LG, Lilly Asia Ventures,
+    TD Cowen — but no wp/v2 route. HTML only.
+relationships:
+- from: press_release
+  to: category
+  type: has_many
+  via: categories
+- from: press_release
+  to: post_tag
+  type: has_many
+  via: tags
+- from: press_release
+  to: attachment
+  type: has_one
+  via: featured_media
+- from: page
+  to: attachment
+  type: has_one
+  via: featured_media
+- from: page
+  to: page
+  type: belongs_to
+  via: parent
+- from: attachment
+  to: page
+  type: belongs_to
+  via: post
+- from: category
+  to: category
+  type: belongs_to
+  via: parent
+embedding:
+  param: _embed
+  note: >-
+    Resolves featured_media, author and term relationships into _embedded in a single request rather
+    than N follow-ups. This is the only join mechanism the surface offers.
+gaps:
+- >-
+  The five KSQ-specific content types — pipelines, platforms, leadership, board_of_directors and
+  investors — are exactly the ones a reader would want structured, and they are the ones not exposed
+  over REST. Setting show_in_rest on those types would turn the science and the people into
+  machine-readable data at zero cost to the company.

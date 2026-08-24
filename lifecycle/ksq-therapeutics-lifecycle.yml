@@ -1,0 +1,62 @@
+generated: '2026-08-23'
+method: derived
+source: >-
+  openapi/_original/ksq-therapeutics-content-openapi.yml plus live probes of ksqtx.com on
+  2026-08-23. Searched the ksqtx.com site, its sitemap index and its /llms.txt page inventory for a
+  status page, changelog, deprecation policy, SLA or versioning policy; none exists.
+note: >-
+  KSQ Therapeutics operates no developer program, so it publishes no API lifecycle commitments of
+  any kind. The versioning that exists is WordPress core's, inherited by running WordPress. Nothing
+  in this file should be read as a promise the company has made.
+api: https://ksqtx.com/wp-json
+versioning:
+  scheme: path-namespace
+  current: wp/v2
+  policy_published: false
+  policy_url: null
+  note: >-
+    Major version changes on this surface would come from a WordPress core release, not from a KSQ
+    decision, and would not be announced by KSQ.
+deprecation:
+  policy_published: false
+  policy_url: null
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  deprecated_operations: []
+  note: >-
+    No RFC 8594 Sunset or Deprecation header was observed on any response on 2026-08-23, and no
+    operation in openapi/ carries deprecated: true. NO Deprecation pointer is emitted in apis.yml.
+status_page:
+  published: false
+  url: null
+  probed:
+  - url: https://status.ksqtx.com/
+    status: 000
+    note: Host does not resolve to a service — ksqtx.com uses wildcard DNS to a GoDaddy parking IP with no matching TLS certificate.
+  note: >-
+    No status page, uptime dashboard or incident history exists. NO StatusPage pointer is emitted in
+    apis.yml.
+sla:
+  published: false
+  url: null
+changelog:
+  published: false
+  url: null
+  note: >-
+    KSQ publishes a dated press-release archive at https://ksqtx.com/press-releases/ (39 items,
+    2026-08-23) but no API or product changelog. No changelog/ artifact is written, because a
+    corporate news archive is not a change log for a contract.
+support:
+  channel: https://ksqtx.com/contact-us/
+  email: info@ksqtx.com
+  phone: '+1-617-674-9150'
+  note: General corporate contact. No developer support channel, forum or community exists.
+content_freshness:
+  latest_press_release: '2025-04-09'
+  latest_media_upload: '2026-08-21'
+  latest_page_modification: '2026-08-21'
+  note: >-
+    Read from the live collections on 2026-08-23 — the press-release archive's newest item by
+    publish date, and the newest media attachment and page modification timestamp. The site is
+    actively maintained.

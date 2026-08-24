@@ -1,18 +1,251 @@
 aid: ksq-therapeutics
 name: KSQ Therapeutics
-description: 'KSQ Therapeutics is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: >-
+  KSQ Therapeutics is a clinical-stage biotechnology company headquartered at 4 Maguire Road in
+  Lexington, Massachusetts, founded in 2015 by pioneers of CRISPR screening and functional genomics.
+  Its proprietary CRISPRomics platform runs genome-scale CRISPR/Cas9 functional genomic screens across
+  cancer models and immune cell types to identify therapeutic targets that directly correlate genomic
+  function to disease. The company applies those targets in two directions: CRISPR/Cas9-engineered
+  tumor-infiltrating lymphocyte (eTIL) cell therapies, where a single gene is inactivated to increase
+  the tumor-killing capacity of a patient's own T cells — KSQ-001EX (SOCS1 inactivated) and KSQ-004EX
+  (SOCS1 and Regnase-1 inactivated) — and small molecules such as KSQ-4279, a first-in-class USP1
+  inhibitor for advanced solid tumors. KSQ has run broad discovery collaborations with Takeda, licensed
+  cell-therapy technology with CRISPR Therapeutics, partnered manufacturing with CTMC, and sold multiple
+  research-stage oncology programs to Ono Pharmaceutical. Investors include Flagship Pioneering, ARCH
+  Venture Partners, Polaris Partners, Alexandria, Alpha Wave Global, Baillie Gifford, Invus, LG and
+  Lilly Asia Ventures. KSQ Therapeutics runs no developer program and publishes no product API,
+  developer portal, OpenAPI or API reference. The only machine-readable surfaces reachable without
+  credentials are the WordPress REST content API behind ksqtx.com, an All in One SEO generated
+  /llms.txt, and the open-source bioinformatics code in its public GitHub organization — all
+  catalogued here.
 url: https://raw.githubusercontent.com/api-evangelist/ksq-therapeutics/refs/heads/main/apis.yml
+image: https://ksqtx.com/wp-content/uploads/2024/02/KSQ-logo-color-RegTM.png
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
-specificationVersion: '0.20'
+x-tier: profiled
+x-tier-reason: enrichment
+specificationVersion: '0.23'
 created: '2026-08-23'
 modified: '2026-08-23'
 tags:
 - Company
-apis: []
+- Biotechnology
+- Life Sciences
+- Therapeutics
+- Oncology
+- Genomics
+- CRISPR
+- Gene Editing
+- Cell Therapy
+- Clinical Stage
+- Functional Genomics
+- content-api
+tags_raw:
+- Company
+- biotechnology
+- life-sciences
+- therapeutics
+- oncology
+- genomics
+- crispr
+- gene-editing
+- cell-therapy
+- clinical-stage
+- functional-genomics
+- content-api
+apis:
+- aid: ksq-therapeutics:ksq-therapeutics-press-releases-api
+  name: KSQ Therapeutics Press Releases API
+  description: >-
+    The press_release custom post type behind ksqtx.com — the company news archive. 39 items were
+    returned anonymously on 2026-08-23 (X-WP-Total), spanning the Takeda and Ono collaborations, the
+    CRISPR Therapeutics license agreement, the KSQ-001EX / KSQ-004EX / KSQ-4279 IND clearances and
+    first-patient-dosed announcements, and conference poster presentations. This is content-management
+    platform infrastructure, not a product KSQ markets.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://ksqtx.com/wp-json
+  tags:
+  - press_release
+  tags_raw:
+  - press-releases
+  - news
+  x-origin: platform-default
+  x-origin-note: >-
+    Provided by WordPress core REST API, not authored or marketed by KSQ Therapeutics.
+  properties:
+  - type: OpenAPI
+    url: openapi/ksq-therapeutics-press-releases-api-openapi.yml
+  - type: Authentication
+    url: authentication/ksq-therapeutics-authentication.yml
+  - type: ErrorCatalog
+    url: errors/ksq-therapeutics-problem-types.yml
+  - type: Conventions
+    url: conventions/ksq-therapeutics-conventions.yml
+  - type: DataModel
+    url: data-model/ksq-therapeutics-data-model.yml
+- aid: ksq-therapeutics:ksq-therapeutics-pages-api
+  name: KSQ Therapeutics Pages API
+  description: >-
+    WordPress page collection behind ksqtx.com — Home, About, Platform, Pipeline, Partners, News,
+    Press Releases, Careers and the Expanded Access Policy. 9 items on 2026-08-23. Bodies are Divi
+    page-builder markup delivered as rendered HTML.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://ksqtx.com/wp-json
+  tags:
+  - pages
+  tags_raw:
+  - pages
+  x-origin: platform-default
+  properties:
+  - type: OpenAPI
+    url: openapi/ksq-therapeutics-pages-api-openapi.yml
+  - type: Authentication
+    url: authentication/ksq-therapeutics-authentication.yml
+  - type: ErrorCatalog
+    url: errors/ksq-therapeutics-problem-types.yml
+  - type: Conventions
+    url: conventions/ksq-therapeutics-conventions.yml
+  - type: DataModel
+    url: data-model/ksq-therapeutics-data-model.yml
+- aid: ksq-therapeutics:ksq-therapeutics-media-api
+  name: KSQ Therapeutics Media API
+  description: >-
+    WordPress media library — 235 attachments on 2026-08-23, including leadership and board headshots,
+    pipeline and platform graphics, poster PDFs and the homepage background video.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://ksqtx.com/wp-json
+  tags:
+  - media
+  tags_raw:
+  - media
+  x-origin: platform-default
+  properties:
+  - type: OpenAPI
+    url: openapi/ksq-therapeutics-media-api-openapi.yml
+  - type: Authentication
+    url: authentication/ksq-therapeutics-authentication.yml
+  - type: ErrorCatalog
+    url: errors/ksq-therapeutics-problem-types.yml
+  - type: Conventions
+    url: conventions/ksq-therapeutics-conventions.yml
+  - type: DataModel
+    url: data-model/ksq-therapeutics-data-model.yml
+- aid: ksq-therapeutics:ksq-therapeutics-search-api
+  name: KSQ Therapeutics Search API
+  description: >-
+    Cross-type WordPress search over every REST-exposed post type. 48 results anonymously on
+    2026-08-23. Returns lightweight {id, title, url, type, subtype} records.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://ksqtx.com/wp-json
+  tags:
+  - search
+  tags_raw:
+  - search
+  x-origin: platform-default
+  properties:
+  - type: OpenAPI
+    url: openapi/ksq-therapeutics-search-api-openapi.yml
+  - type: Authentication
+    url: authentication/ksq-therapeutics-authentication.yml
+  - type: ErrorCatalog
+    url: errors/ksq-therapeutics-problem-types.yml
+  - type: Conventions
+    url: conventions/ksq-therapeutics-conventions.yml
+  - type: DataModel
+    url: data-model/ksq-therapeutics-data-model.yml
+- aid: ksq-therapeutics:ksq-therapeutics-discovery-api
+  name: KSQ Therapeutics Discovery API
+  description: >-
+    The WordPress REST route index, namespace index, registered post types, taxonomies and statuses.
+    349 routes across 9 namespaces on 2026-08-23. This is the only machine-readable contract KSQ
+    Therapeutics serves, and the source every derived artifact in this repo was built from.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://ksqtx.com/wp-json
+  tags:
+  - discovery
+  tags_raw:
+  - discovery
+  x-origin: platform-default
+  properties:
+  - type: OpenAPI
+    url: openapi/ksq-therapeutics-discovery-api-openapi.yml
+  - type: Authentication
+    url: authentication/ksq-therapeutics-authentication.yml
+  - type: ErrorCatalog
+    url: errors/ksq-therapeutics-problem-types.yml
+  - type: Conventions
+    url: conventions/ksq-therapeutics-conventions.yml
+  - type: DataModel
+    url: data-model/ksq-therapeutics-data-model.yml
+- aid: ksq-therapeutics:ksq-therapeutics-taxonomy-api
+  name: KSQ Therapeutics Taxonomy API
+  description: >-
+    Category and post_tag term collections. Registered and anonymously reachable; one category term
+    ("Uncategorized", 5 posts) and zero tags on 2026-08-23.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://ksqtx.com/wp-json
+  tags:
+  - taxonomy
+  tags_raw:
+  - taxonomy
+  x-origin: platform-default
+  properties:
+  - type: OpenAPI
+    url: openapi/ksq-therapeutics-taxonomy-api-openapi.yml
+  - type: Authentication
+    url: authentication/ksq-therapeutics-authentication.yml
+  - type: ErrorCatalog
+    url: errors/ksq-therapeutics-problem-types.yml
+  - type: Conventions
+    url: conventions/ksq-therapeutics-conventions.yml
+  - type: DataModel
+    url: data-model/ksq-therapeutics-data-model.yml
+- aid: ksq-therapeutics:ksq-therapeutics-posts-api
+  name: KSQ Therapeutics Posts API
+  description: >-
+    The core WordPress post collection. Registered and anonymously reachable, but empty on this
+    deployment (X-WP-Total 0 on 2026-08-23) — KSQ publishes news through press_release instead.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://ksqtx.com/wp-json
+  tags:
+  - posts
+  tags_raw:
+  - posts
+  x-origin: platform-default
+  properties:
+  - type: OpenAPI
+    url: openapi/ksq-therapeutics-posts-api-openapi.yml
+  - type: Authentication
+    url: authentication/ksq-therapeutics-authentication.yml
+  - type: ErrorCatalog
+    url: errors/ksq-therapeutics-problem-types.yml
+  - type: Conventions
+    url: conventions/ksq-therapeutics-conventions.yml
+  - type: DataModel
+    url: data-model/ksq-therapeutics-data-model.yml
+- aid: ksq-therapeutics:ksq-therapeutics-oembed-api
+  name: KSQ Therapeutics oEmbed API
+  description: >-
+    oEmbed 1.0 discovery for ksqtx.com URLs. Verified live anonymously on 2026-08-23 — provider_name
+    "KSQ Therapeutics", provider_url https://ksqtx.com.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://ksqtx.com/wp-json
+  tags:
+  - oembed
+  tags_raw:
+  - oembed
+  x-origin: platform-default
+  properties:
+  - type: OpenAPI
+    url: openapi/ksq-therapeutics-oembed-api-openapi.yml
+  - type: Authentication
+    url: authentication/ksq-therapeutics-authentication.yml
+  - type: ErrorCatalog
+    url: errors/ksq-therapeutics-problem-types.yml
+  - type: Conventions
+    url: conventions/ksq-therapeutics-conventions.yml
+  - type: DataModel
+    url: data-model/ksq-therapeutics-data-model.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -20,4 +253,97 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
+  url: https://ksqtx.com/
+- type: About
+  url: https://ksqtx.com/about/
+- type: Platform
+  url: https://ksqtx.com/platform/
+- type: Pipeline
+  url: https://ksqtx.com/pipeline/
+- type: Partners
+  url: https://ksqtx.com/partners/
+- type: Blog
+  url: https://ksqtx.com/news/
+- type: BlogRSS
+  url: https://ksqtx.com/feed/
+- type: News
+  url: https://ksqtx.com/press-releases/
+- type: Careers
+  url: https://ksqtx.com/careers/
+- type: Support
+  url: https://ksqtx.com/contact-us/
+- type: PatientResources
+  url: https://ksqtx.com/eap/
+- type: GitHubOrganization
+  url: https://github.com/ksqtx
+- type: SourceCode
+  url: https://github.com/ksqtx/TRACE
+- type: LinkedIn
+  url: https://www.linkedin.com/company/10414448/
+- type: Twitter
+  url: https://twitter.com/KSQ_TX
+- type: SecondaryMarket
   url: https://forgeglobal.com/ksq-therapeutics_stock/
+- type: Authentication
+  url: authentication/ksq-therapeutics-authentication.yml
+- type: Conventions
+  url: conventions/ksq-therapeutics-conventions.yml
+- type: Conformance
+  url: conformance/ksq-therapeutics-conformance.yml
+- type: ErrorCatalog
+  url: errors/ksq-therapeutics-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/ksq-therapeutics-lifecycle.yml
+- type: DataModel
+  url: data-model/ksq-therapeutics-data-model.yml
+- type: Overlay
+  url: overlays/ksq-therapeutics-content-overlay.yaml
+- type: DomainSecurity
+  url: security/ksq-therapeutics-domain-security.yml
+- type: LLMsTxt
+  url: llms/ksq-therapeutics-llms.txt
+- type: Packages
+  url: packages/ksq-therapeutics-packages.yml
+- type: CLI
+  url: cli/ksq-therapeutics-cli.yml
+- type: Plans
+  url: plans/ksq-therapeutics-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/ksq-therapeutics-rate-limits.yml
+- type: AgentSkill
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-08-23'
+  status: enriched
+  artifacts_added: 29
+  pass: local-v1
+x-coverage:
+  state: covered
+  reason: platform-surface-only
+  detail: >-
+    KSQ Therapeutics is a clinical-stage biotech with no developer program and no product API —
+    /openapi.json, /swagger.json, /api-docs, /docs, /redoc and /graphql all 404 on ksqtx.com, every
+    /.well-known/ path 404s including both agent-card locations, and api./docs./developer.ksqtx.com
+    resolve only to a wildcard GoDaddy parking address with no matching TLS certificate — but the
+    corporate WordPress site serves a live, anonymously readable REST content API at
+    https://ksqtx.com/wp-json (349 routes, 9 namespaces) plus an All in One SEO generated /llms.txt,
+    and the company publishes first-party open-source bioinformatics code at github.com/ksqtx; that
+    is what this profile captures.
+  evidence:
+  - url: https://ksqtx.com/openapi.json
+    status: 404
+  - url: https://ksqtx.com/.well-known/agent-card.json
+    status: 404
+  - url: https://ksqtx.com/.well-known/api-catalog
+    status: 404
+  - url: https://ksqtx.com/wp-json
+    status: 200
+  - url: https://ksqtx.com/wp-json/wp/v2/press_release
+    status: 200
+  - url: https://ksqtx.com/wp-json/mcp
+    status: 404
+  - url: https://ksqtx.com/llms.txt
+    status: 200
+  - url: https://github.com/ksqtx
+    status: 200
+  checked: '2026-08-23'

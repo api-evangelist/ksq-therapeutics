@@ -1,0 +1,42 @@
+generated: '2026-08-23'
+method: probed
+source: >-
+  Live anonymous requests against https://ksqtx.com/wp-json/ on 2026-08-23, plus a search of
+  ksqtx.com and its /llms.txt page inventory for any published limits page.
+limit_count: 0
+documented: false
+docs: null
+note: >-
+  KSQ Therapeutics documents no rate limits — it publishes no developer documentation at all. The
+  surface nevertheless enforces one, undocumented and unsignalled, and that was observed directly
+  during this pass. After roughly forty anonymous GETs across /wp-json/ within a few minutes, the
+  origin began returning HTTP 403 with an HTML body reading "WP Remote Firewall / Blocked because of
+  Malicious Activities" and a per-block Reference ID. No RateLimit-*, X-RateLimit-* or Retry-After
+  header accompanied the block, the status code is 403 rather than 429, and the body is HTML rather
+  than the WordPress JSON error envelope — so a client has no machine-readable way to distinguish
+  throttling from authorization failure, and no way to know how long to wait. That is the finding.
+headers:
+  ratelimit_standard: null
+  x_ratelimit: null
+  retry_after: null
+  observed: []
+exhaustion:
+  status_code: 403
+  media_type: text/html
+  body_shape: >-
+    HTML fragment: "WP Remote Firewall" / "Blocked because of Malicious Activities" / "Reference ID: <id>"
+  retry_guidance: none
+  x-evidence:
+    url: https://ksqtx.com/wp-json/wp/v2/types
+    http_status: 403
+    server: Apache
+    x_powered_by: PHP/8.4.23
+    observed: '2026-08-23'
+    note: >-
+      The same URL returned HTTP 200 with a full JSON body earlier in the same pass, so this is a
+      volume-triggered block by the WP Remote Firewall plugin, not a permanent denial.
+limits: []
+recommendation: >-
+  If KSQ wants this content readable by agents and aggregators — and the site already ships an
+  /llms.txt inviting exactly that — the firewall should return 429 with a Retry-After header and the
+  JSON error envelope, so a well-behaved client can back off instead of being told it is malicious.

@@ -1,0 +1,87 @@
+generated: '2026-08-23'
+method: derived
+source: >-
+  mcp/ksq-therapeutics-mcp.yml (candidate tools) bound to
+  openapi/_original/ksq-therapeutics-content-openapi.yml (real, verified operationIds).
+note: >-
+  KSQ Therapeutics operates no MCP server and no GraphQL endpoint, so this crosswalk maps a DERIVED
+  candidate tool set onto the real REST operations that would back it. It exists to show what the
+  agent surface would look like and, more usefully, to make the REST-only column explicit. Nothing
+  here asserts a live tool.
+surfaces:
+  openapi: openapi/_original/ksq-therapeutics-content-openapi.yml
+  openapi_gated: false
+  graphql: null
+  mcp: null
+  mcp_gated: null
+crosswalk:
+- tool: ksq_list_press_releases
+  category: content
+  rest:
+  - listPressReleases
+  binding: one-to-one
+  confidence: high
+- tool: ksq_get_press_release
+  category: content
+  rest:
+  - getPressRelease
+  binding: one-to-one
+  confidence: high
+- tool: ksq_search
+  category: discovery
+  rest:
+  - search
+  binding: one-to-one
+  confidence: high
+- tool: ksq_list_pages
+  category: content
+  rest:
+  - listPages
+  binding: one-to-one
+  confidence: high
+- tool: ksq_get_page
+  category: content
+  rest:
+  - getPage
+  binding: one-to-one
+  confidence: high
+- tool: ksq_list_media
+  category: assets
+  rest:
+  - listMedia
+  binding: one-to-one
+  confidence: high
+mcp_only: []
+rest_only:
+- operationId: getMediaItem
+  reason: Single-attachment fetch; covered in practice by listMedia with include.
+- operationId: listPosts
+  reason: Core post collection is empty on this deployment.
+- operationId: getPost
+  reason: Core post collection is empty on this deployment.
+- operationId: listCategories
+  reason: One term only; not worth a tool.
+- operationId: getCategory
+  reason: One term only.
+- operationId: listTags
+  reason: Empty collection.
+- operationId: getTag
+  reason: Empty collection.
+- operationId: getRouteIndex
+  reason: Discovery, not a content capability.
+- operationId: getNamespaceIndex
+  reason: Discovery, not a content capability.
+- operationId: listTypes
+  reason: Discovery, not a content capability.
+- operationId: listTaxonomies
+  reason: Discovery, not a content capability.
+- operationId: listStatuses
+  reason: Discovery, not a content capability.
+- operationId: getOembed
+  reason: Embed rendering, not an agent capability.
+coverage:
+  rest_operations: 19
+  candidate_tools: 6
+  mapped: 6
+  mcp_only: 0
+  rest_only: 13

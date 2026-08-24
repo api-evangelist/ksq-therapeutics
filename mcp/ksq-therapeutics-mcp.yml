@@ -1,0 +1,80 @@
+generated: '2026-08-23'
+method: derived
+source: >-
+  Searched for a first-party MCP server on 2026-08-23: probed https://ksqtx.com/mcp,
+  https://ksqtx.com/.well-known/mcp.json, https://ksqtx.com/wp-json/mcp and
+  https://ksqtx.com/wp-json/mcp/v1, and read the full namespace list from the WordPress route index
+  at https://ksqtx.com/wp-json/. No MCP server exists. Candidate tools below are DERIVED from
+  openapi/_original/ksq-therapeutics-content-openapi.yml.
+status: candidate
+note: >-
+  KSQ Therapeutics ships no Model Context Protocol server. NO MCPServer pointer is emitted in
+  apis.yml — this file records a candidate design, not a surface the company operates, and wiring the
+  pointer would credit KSQ with an agent endpoint it does not run. Worth recording, though: the site
+  runs All in One SEO 5.0.0.1, whose aioseo/v1 namespace ships
+  /aioseo/v1/ai-agents/install-mcp-adapter and /aioseo/v1/ai-agents/generate-app-password, and the
+  WordPress Abilities API (wp-abilities/v1) is already registered. This deployment is one
+  administrator click from serving a real MCP server; it just has not been clicked. Both routes are
+  admin-gated (HTTP 401 rest_forbidden anonymously).
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: unknown
+  verified: probed
+probes:
+- url: https://ksqtx.com/wp-json/mcp
+  status: 404
+  body: '{"code":"rest_no_route",...}'
+- url: https://ksqtx.com/wp-json/mcp/v1
+  status: 404
+  body: '{"code":"rest_no_route",...}'
+- url: https://ksqtx.com/mcp
+  status: 404
+- url: https://ksqtx.com/.well-known/mcp.json
+  status: 404
+- url: https://ksqtx.com/wp-json/wp-abilities/v1/abilities
+  status: 401
+  body: '{"code":"rest_forbidden",...}'
+  note: >-
+    The WordPress Abilities API — the layer an MCP adapter would expose — is registered but refuses
+    anonymous listing, so no tool schemas could be read.
+namespaces_present:
+- oembed/1.0
+- aioseo/v1
+- cky/v1
+- redirection/v1
+- divi/v1
+- wp/v2
+- wp-site-health/v1
+- wp-block-editor/v1
+- wp-abilities/v1
+namespace_absent: mcp
+candidate_tools:
+- name: ksq_list_press_releases
+  description: List KSQ Therapeutics press releases, newest first, with optional date and text filters.
+  rest: listPressReleases
+  confidence: high
+- name: ksq_get_press_release
+  description: Fetch one press release by id.
+  rest: getPressRelease
+  confidence: high
+- name: ksq_search
+  description: Search all published KSQ content and return {id, title, url, type} records.
+  rest: search
+  confidence: high
+- name: ksq_list_pages
+  description: List the corporate pages — About, Platform, Pipeline, Partners, Careers, Expanded Access Policy.
+  rest: listPages
+  confidence: high
+- name: ksq_get_page
+  description: Fetch one page by id, returning rendered HTML.
+  rest: getPage
+  confidence: high
+- name: ksq_list_media
+  description: List media library attachments, filterable by mime type.
+  rest: listMedia
+  confidence: high
+candidate_tool_count: 6
+crosswalk: mcp/ksq-therapeutics-tool-crosswalk.yml

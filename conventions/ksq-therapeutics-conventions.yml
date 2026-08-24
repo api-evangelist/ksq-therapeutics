@@ -1,0 +1,153 @@
+generated: '2026-08-23'
+method: derived
+source: >-
+  openapi/_original/ksq-therapeutics-content-openapi.yml, derived from the live WordPress REST route
+  index at https://ksqtx.com/wp-json/ and verified against live anonymous responses on 2026-08-23.
+  Upstream semantics confirmed against the WordPress REST API Handbook,
+  https://developer.wordpress.org/rest-api/.
+note: >-
+  These are WordPress core REST conventions as deployed on ksqtx.com, not conventions KSQ
+  Therapeutics designed, documents or supports. KSQ publishes no API reference of its own.
+api: https://ksqtx.com/wp-json
+authentication:
+  style: none for the read surface; WordPress Application Passwords (HTTP Basic) for writes
+  detail: See authentication/ksq-therapeutics-authentication.yml
+  anonymous_read: true
+pagination:
+  style: page-number
+  params:
+  - name: page
+    default: 1
+    minimum: 1
+  - name: per_page
+    default: 10
+    minimum: 1
+    maximum: 100
+  - name: offset
+    note: Alternative cursor-free offset, accepted on post-type collections.
+  response_headers:
+  - name: X-WP-Total
+    meaning: Total items in the unpaginated collection.
+  - name: X-WP-TotalPages
+    meaning: Total pages at the current per_page.
+  - name: Link
+    meaning: RFC 8288 rel="next" / rel="prev" links.
+  exposed_via: Access-Control-Expose-Headers
+  verified: true
+  x-evidence: >-
+    X-WP-Total read live on 2026-08-23 — pages 9, media 235, press_release 39, search 48,
+    categories 1, posts 0, tags 0, comments 0.
+filtering:
+  params:
+  - search
+  - search_columns
+  - search_semantics
+  - slug
+  - include
+  - exclude
+  - after
+  - before
+  - modified_after
+  - modified_before
+  - order
+  - orderby
+  - status
+  - categories
+  - tags
+  note: >-
+    Every filter above appears verbatim in the endpoint `args` of the route index; none was invented.
+field_selection:
+  sparse_fieldsets:
+    param: _fields
+    description: Comma-separated allowlist of top-level response properties.
+  embedding:
+    param: _embed
+    description: >-
+      Inlines linked resources (author, featured media, terms) into an _embedded object, replacing a
+      second round trip.
+  context:
+    param: context
+    values:
+    - view
+    - embed
+    - edit
+    note: edit is refused anonymously (HTTP 401 rest_forbidden).
+  envelope:
+    param: _envelope
+    description: Wraps body, status and headers into a single 200 JSON payload for clients that cannot read headers.
+versioning:
+  style: path-namespace
+  current: wp/v2
+  namespaces:
+  - oembed/1.0
+  - wp/v2
+  - wp-site-health/v1
+  - wp-block-editor/v1
+  - wp-abilities/v1
+  - aioseo/v1
+  - cky/v1
+  - redirection/v1
+  - divi/v1
+  discovery: GET https://ksqtx.com/wp-json/ returns the full namespace and route table.
+  policy_published: false
+  note: >-
+    Version cadence is WordPress core's, not KSQ's. KSQ publishes no versioning or deprecation policy
+    for this surface.
+error_envelope:
+  media_type: application/json
+  rfc9457: false
+  shape:
+    code: machine-readable slug
+    message: human-readable string
+    data.status: HTTP status integer
+    data.params: present on argument-validation failures
+  catalog: errors/ksq-therapeutics-problem-types.yml
+rate_limit_signaling:
+  headers_observed: []
+  documented: false
+  note: >-
+    No X-RateLimit-*, RateLimit-* or Retry-After header was returned on any anonymous response
+    observed on 2026-08-23, and no limit is documented. See rate-limits/ksq-therapeutics-rate-limits.yml.
+request_id_tracing:
+  supported: false
+  note: No request-id or correlation header was observed on any response.
+idempotency:
+  supported: false
+  header: null
+  note: >-
+    The catalogued surface is read-only, so there is nothing to make idempotent. GET is already
+    safe and idempotent by HTTP semantics. WordPress core provides no idempotency-key mechanism for
+    its write operations either, and those writes are administrative and credential-gated. NO
+    Idempotency pointer is emitted in apis.yml — asserting one here would credit KSQ with a runtime
+    guarantee neither it nor WordPress offers.
+dry_run_mode:
+  supported: na
+  note: Read-only surface — nothing to rehearse.
+reversibility:
+  status: na
+  grade: na
+  note: >-
+    Every operation catalogued in openapi/ is a GET. There is no write surface reachable without
+    credentials, so there is no action an agent could take that would need taking back, and
+    reversibility, dry-run and idempotency are all honestly na rather than zero. The administrative
+    write surface (POST/PUT/PATCH/DELETE on /wp/v2/*) is WordPress core: it offers no reversal
+    operation, no undo endpoint and no restore window, except for the standard WordPress trash
+    behaviour on posts and pages, where DELETE without force=true moves an item to status "trash"
+    and it can be restored by setting status back to a published state. KSQ documents no window for
+    that and none is asserted here.
+  write_surface_reachable_anonymously: false
+  surfaces: []
+caching:
+  conditional_requests: true
+  note: WordPress core emits ETag/Last-Modified on REST collections; not documented by KSQ.
+cors:
+  enabled: true
+  note: >-
+    Access-Control-Allow-Origin and Access-Control-Expose-Headers are emitted by WordPress core,
+    which is what makes X-WP-Total readable from a browser.
+cross_links:
+  errors: errors/ksq-therapeutics-problem-types.yml
+  lifecycle: lifecycle/ksq-therapeutics-lifecycle.yml
+  authentication: authentication/ksq-therapeutics-authentication.yml
+  rate_limits: rate-limits/ksq-therapeutics-rate-limits.yml
+  data_model: data-model/ksq-therapeutics-data-model.yml

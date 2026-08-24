@@ -1,0 +1,84 @@
+generated: '2026-08-23'
+method: searched
+source: >-
+  Searched npm (registry.npmjs.org search + registry metadata), PyPI (pypi.org/pypi/<name>/json),
+  and the company's public GitHub organization https://github.com/ksqtx via the GitHub API on
+  2026-08-23.
+note: >-
+  KSQ Therapeutics publishes no API client library, because it publishes no API. It does publish
+  first-party open-source bioinformatics code in its own GitHub organization, and that is what is
+  recorded here. Nothing below is an SDK, so NO SDKs pointer is emitted in apis.yml — wiring one
+  would fire the sdk_count ergonomics checks for client libraries that do not exist.
+sdk_count: 0
+registry_search:
+- registry: npm
+  query: ksq therapeutics
+  result: no first-party package
+  status: 200
+- registry: pypi
+  probed: https://pypi.org/pypi/ksq/json
+  status: 404
+- registry: pypi
+  probed: https://pypi.org/pypi/trace/json
+  status: 404
+  note: The name the TRACE repo declares in pyproject.toml is unclaimed on PyPI.
+- registry: pypi
+  probed: https://pypi.org/pypi/tracepy/json
+  status: 200
+  note: >-
+    NOT KSQ. pypi.org/project/tracepy is "Optical design software for python" by Gavin Niendorf
+    (github.com/GNiendorf/tracepy), last released 2025-02-03. It shares the import package name
+    declared in the KSQ repo and is unrelated. Recorded here so a future pass does not misattribute
+    it.
+packages:
+- language: python
+  registry: source
+  name: trace
+  import_package: tracepy
+  url: https://github.com/ksqtx/TRACE
+  install: pip install git+https://github.com/ksqtx/TRACE.git
+  version: 0.1.0
+  published: null
+  official: true
+  license: GPL-3.0 (repository) / MIT (declared in pyproject.toml — the two disagree)
+  description: >-
+    TRACE — Tumor Reactivity Assessment using Clonal Expression. A machine-learning system for
+    single-cell RNA-seq classification, built on scanpy/anndata, scikit-learn, XGBoost, Optuna,
+    SHAP and MLflow, with a 13-command Click CLI. Directly adjacent to KSQ's eTIL programs.
+  note: >-
+    version 0.1.0 read from pyproject.toml at github.com/ksqtx/TRACE@main on 2026-08-23. published
+    is null because this package has never been released to any registry — there is no metadata
+    endpoint to query and no tagged release on the repository, so a consumer can only install from a
+    git ref. Last commit pushed 2026-04-14. Note the repository's [project.urls] block still points
+    at github.com/trace/trace and its author metadata reads "TRACE Team <team@trace.dev>" — unfilled
+    template placeholders, not KSQ contact details. Ownership rests on the repo living in the ksqtx
+    organization (github.com/ksqtx, org display name "KSQ Therapeutics") and on the subject matter
+    matching KSQ's published eTIL work; it is NOT asserted from the pyproject metadata.
+- language: r
+  registry: source
+  name: HRD-predictions-cell-lines
+  url: https://github.com/ksqtx/HRD-predictions-cell-lines
+  install: git clone https://github.com/ksqtx/HRD-predictions-cell-lines.git
+  version: null
+  published: null
+  official: true
+  license: GPL-3.0
+  description: >-
+    Data and R code accompanying "Pan-cancer Analysis of Homologous Recombination Deficiency in Cell
+    Lines" — CHORD predictions and HRDsum scores.
+  note: >-
+    version null: this is a paper companion repository, not a packaged library. It has no
+    DESCRIPTION, no version field and no registry release, so there is nothing to read and nothing to
+    guess. Last pushed 2024-06-26.
+forks_not_packages:
+- gatk
+- nf-core-rnaseq
+- airrflow
+- farver
+- shinyTree
+- ksqShinyTree
+- awesome-microsoft-copilot-prompts
+forks_note: >-
+  The remaining seven repositories in github.com/ksqtx are forks of third-party projects (Broad
+  Institute GATK, nf-core pipelines, R utility packages, a prompt library). They are not KSQ
+  software and are not recorded as packages.

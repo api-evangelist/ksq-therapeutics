@@ -1,0 +1,18 @@
+generated: '2026-08-23'
+method: searched
+source: >-
+  https://ksqtx.com/ and its full page inventory as published in https://ksqtx.com/llms.txt and
+  https://ksqtx.com/sitemap.xml, searched on 2026-08-23.
+plan_count: 0
+pricing_published: false
+pricing_url: null
+free_tier: false
+signup_url: null
+note: >-
+  KSQ Therapeutics sells no API, no software and no subscription of any kind. It is a clinical-stage
+  biotechnology company whose commercial relationships are pharmaceutical partnerships and licensing
+  agreements — Takeda, Ono Pharmaceutical, CRISPR Therapeutics, CTMC — negotiated bilaterally and
+  announced by press release, not priced on a page. There is no pricing page, no plans page, no
+  signup and no self-service purchase path anywhere on ksqtx.com. plan_count 0 is the correct and
+  complete answer, not a gap in this pass.
+plans: []

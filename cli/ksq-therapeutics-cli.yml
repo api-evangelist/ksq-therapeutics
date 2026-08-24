@@ -1,0 +1,76 @@
+generated: '2026-08-23'
+method: searched
+source: >-
+  https://github.com/ksqtx/TRACE and its published command reference
+  https://github.com/ksqtx/TRACE/blob/main/CLI_commands.md, read on 2026-08-23.
+note: >-
+  This is a first-party command-line tool published by KSQ Therapeutics in its own GitHub
+  organization. It is NOT an API client — KSQ ships no API for a CLI to wrap. It is a bioinformatics
+  analysis tool for single-cell RNA-seq classification, and it is recorded because it is real
+  developer-facing software the company publishes, not because it exercises the content API
+  catalogued elsewhere in this repo.
+name: trace
+binary: trace
+repository: https://github.com/ksqtx/TRACE
+docs: https://github.com/ksqtx/TRACE/blob/main/CLI_commands.md
+language: python
+framework: Click
+version: 0.1.0
+license: GPL-3.0 (repository) / MIT (pyproject.toml)
+wraps_api: false
+install:
+- method: git
+  command: pip install git+https://github.com/ksqtx/TRACE.git
+  note: Not published to PyPI. requires-python >=3.11.
+global_options:
+- flag: --log-level
+  values:
+  - DEBUG
+  - INFO
+  - WARNING
+  - ERROR
+  - CRITICAL
+  default: INFO
+- flag: --config
+  description: Path to a YAML configuration file.
+- flag: --output-dir
+  description: Output directory for results and artifacts.
+  default: ./output
+commands:
+- group: meta
+  commands:
+  - name: version
+    description: Display TRACEpy and Python version information.
+  - name: init-config
+    description: Generate a configuration template (default or batch).
+  - name: validate-config
+    description: Validate a configuration file's structure and values.
+- group: data
+  commands:
+  - name: preprocess
+    description: >-
+      Preprocess single-cell RNA-seq data from h5ad files — gene selection plus clone-level or
+      cell-level expression summarisation for downstream ML.
+  - name: chunk-remote-h5ad
+    description: Chunk a remote h5ad dataset for processing.
+- group: model
+  commands:
+  - name: train
+    description: Train a classifier on preprocessed expression data.
+  - name: evaluate
+    description: Evaluate a trained model.
+  - name: compare
+    description: Compare models.
+  - name: retrain
+    description: Retrain an existing model.
+  - name: predict
+    description: Run predictions with a trained model.
+  - name: batch
+    description: Run a batch workflow from a batch configuration.
+- group: analysis
+  commands:
+  - name: analyze-gene-significance
+    description: Analyse gene-level significance in a trained model.
+  - name: classify-cells
+    description: Classify cells from single-cell input.
+command_count: 13

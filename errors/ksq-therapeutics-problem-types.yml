@@ -1,0 +1,83 @@
+generated: '2026-08-23'
+method: derived
+source: >-
+  openapi/_original/ksq-therapeutics-content-openapi.yml plus error bodies observed live on
+  https://ksqtx.com/wp-json/ on 2026-08-23. Slugs and semantics cross-checked against the WordPress
+  REST API Handbook, https://developer.wordpress.org/rest-api/using-the-rest-api/global-parameters/.
+format: wordpress-rest-error
+rfc9457: false
+media_type: application/json
+note: >-
+  KSQ Therapeutics publishes no error reference. This catalog is derived from the WordPress core
+  error envelope and from error bodies actually returned by ksqtx.com. The envelope is NOT RFC 9457
+  application/problem+json: there is no type URI, no title and no instance. Agents should key on
+  `code`, not on `message`, which is localised.
+envelope:
+  code: Machine-readable error slug.
+  message: Human-readable, localisable string.
+  data:
+    status: HTTP status code, repeated inside the body.
+    params: Present on argument-validation failures; maps parameter name to its message.
+    details: Present on argument-validation failures; per-parameter validation detail.
+problem_types:
+- code: rest_no_route
+  status: 404
+  title: No route matched
+  meaning: No registered REST route matched the URL and HTTP method.
+  remediation: >-
+    Re-read the route table at GET https://ksqtx.com/wp-json/ — this deployment registers 9
+    namespaces and 349 routes, and route availability is plugin-dependent.
+  observed: true
+  x-evidence: GET https://ksqtx.com/wp-json/mcp returned 404 with this body on 2026-08-23.
+- code: rest_forbidden
+  status: 401
+  title: Authentication required
+  meaning: >-
+    The route or scope requires credentials. On this deployment it is returned for context=edit and
+    for every administrative namespace.
+  remediation: >-
+    Obtain a WordPress Application Password from the site administrator; there is no self-service
+    path. Prefer context=view, which needs no credentials.
+  observed: true
+  x-evidence: >-
+    GET /wp/v2/settings, /wp-abilities/v1/abilities, /aioseo/v1/ping, /aioseo/v1/options and
+    /redirection/v1/redirect each returned 401 with this body on 2026-08-23.
+- code: cookieyes_rest_cannot_view
+  status: 401
+  title: Plugin resource not listable
+  meaning: The CookieYes consent plugin refuses anonymous listing of its own resources.
+  remediation: Administrative surface — not intended for external callers.
+  observed: true
+  x-evidence: GET /cky/v1/settings/info returned 401 with this body on 2026-08-23.
+- code: rest_post_invalid_id
+  status: 404
+  title: Invalid item id
+  meaning: The requested post, page, attachment or press release id does not exist or is not published.
+  remediation: List the collection first and use an id from the result set.
+  observed: false
+  note: WordPress core behaviour for single-item routes; not exercised against live data.
+- code: rest_invalid_param
+  status: 400
+  title: Invalid parameter
+  meaning: >-
+    One or more query arguments failed the schema declared in the route index — a value outside an
+    enum, per_page above 100, or a malformed date.
+  remediation: >-
+    Read the parameter schema for the operation in openapi/ — every constraint there was copied
+    verbatim from the site's own route index args.
+  observed: false
+- code: rest_forbidden_context
+  status: 401
+  title: Edit context refused
+  meaning: context=edit was requested without sufficient credentials.
+  remediation: Use context=view or context=embed.
+  observed: false
+- code: rest_cannot_view
+  status: 401
+  title: Resource not viewable
+  meaning: The specific resource requires higher capability than the caller holds.
+  remediation: Administrative surface.
+  observed: false
+coverage:
+  observed_live: 3
+  derived_from_core: 4

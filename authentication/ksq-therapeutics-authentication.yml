@@ -1,0 +1,71 @@
+generated: '2026-08-23'
+method: derived
+source: >-
+  openapi/_original/ksq-therapeutics-content-openapi.yml plus live anonymous probes of
+  https://ksqtx.com/wp-json/ on 2026-08-23. The authentication block of the WordPress REST route
+  index at https://ksqtx.com/wp-json/ was read verbatim.
+note: >-
+  KSQ Therapeutics publishes no developer authentication documentation, no OAuth server, no API key
+  programme and no signup flow, because it publishes no product API. What is described here is the
+  authentication model of the WordPress REST API running its corporate marketing site. The read
+  surface catalogued in this repo requires no credentials at all; everything that would require one
+  is administrative.
+api: https://ksqtx.com/wp-json
+schemes:
+- id: anonymous
+  type: none
+  description: >-
+    Every operation catalogued in openapi/ is anonymously readable. Verified on 2026-08-23 with no
+    Authorization header: /wp/v2/pages, /wp/v2/media, /wp/v2/press_release, /wp/v2/posts,
+    /wp/v2/search, /wp/v2/categories, /wp/v2/tags, /wp/v2/types, /wp/v2/taxonomies, /wp/v2/statuses,
+    /oembed/1.0/embed and the route index at / all returned HTTP 200.
+  applies_to: read
+- id: application-passwords
+  type: http
+  scheme: basic
+  description: >-
+    WordPress Application Passwords, declared verbatim in the site's own route index under
+    authentication["application-passwords"]. Credentials are issued per-user from
+    https://ksqtx.com/wp-admin/authorize-application.php and presented as HTTP Basic. This is the
+    only authentication mechanism the deployment advertises. It gates writes and the administrative
+    namespaces; there is no self-service path to obtain one, and API Evangelist holds none.
+  authorization_url: https://ksqtx.com/wp-admin/authorize-application.php
+  applies_to: write, administrative
+  x-evidence:
+    url: https://ksqtx.com/wp-json/
+    field: authentication.application-passwords.endpoints.authorization
+    http_status: 200
+oauth2: false
+openid_connect: false
+mutual_tls: false
+api_keys: false
+gated_surfaces:
+- path: /wp/v2/settings
+  status: 401
+  code: rest_forbidden
+- path: /wp/v2/users/me
+  status: 401
+  code: rest_forbidden
+- path: /wp-abilities/v1/abilities
+  status: 401
+  code: rest_forbidden
+- path: /aioseo/v1/ping
+  status: 401
+  code: rest_forbidden
+- path: /aioseo/v1/options
+  status: 401
+  code: rest_forbidden
+- path: /cky/v1/settings/info
+  status: 401
+  code: cookieyes_rest_cannot_view
+- path: /redirection/v1/redirect
+  status: 401
+  code: rest_forbidden
+observations:
+- >-
+  /wp/v2/users returned HTTP 200 anonymously with 3 author records on 2026-08-23. This is the
+  WordPress default author-enumeration surface, not a KSQ decision. The identities are not recorded
+  in this repo.
+- >-
+  context=edit is refused anonymously on every collection; only context=view and context=embed are
+  reachable without credentials.
