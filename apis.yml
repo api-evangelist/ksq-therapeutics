@@ -54,41 +54,12 @@ tags_raw:
 - functional-genomics
 - content-api
 apis:
-- aid: ksq-therapeutics:ksq-therapeutics-press-releases-api
-  name: KSQ Therapeutics Press Releases API
-  description: >-
-    The press_release custom post type behind ksqtx.com — the company news archive. 39 items were
-    returned anonymously on 2026-08-23 (X-WP-Total), spanning the Takeda and Ono collaborations, the
-    CRISPR Therapeutics license agreement, the KSQ-001EX / KSQ-004EX / KSQ-4279 IND clearances and
-    first-patient-dosed announcements, and conference poster presentations. This is content-management
-    platform infrastructure, not a product KSQ markets.
-  humanURL: https://developer.wordpress.org/rest-api/
-  baseURL: https://ksqtx.com/wp-json
-  tags:
-  - press_release
-  tags_raw:
-  - press-releases
-  - news
-  x-origin: platform-default
-  x-origin-note: >-
-    Provided by WordPress core REST API, not authored or marketed by KSQ Therapeutics.
-  properties:
-  - type: OpenAPI
-    url: openapi/ksq-therapeutics-press-releases-api-openapi.yml
-  - type: Authentication
-    url: authentication/ksq-therapeutics-authentication.yml
-  - type: ErrorCatalog
-    url: errors/ksq-therapeutics-problem-types.yml
-  - type: Conventions
-    url: conventions/ksq-therapeutics-conventions.yml
-  - type: DataModel
-    url: data-model/ksq-therapeutics-data-model.yml
 - aid: ksq-therapeutics:ksq-therapeutics-pages-api
   name: KSQ Therapeutics Pages API
   description: >-
-    WordPress page collection behind ksqtx.com — Home, About, Platform, Pipeline, Partners, News,
-    Press Releases, Careers and the Expanded Access Policy. 9 items on 2026-08-23. Bodies are Divi
-    page-builder markup delivered as rendered HTML.
+    WordPress page collection behind ksqtx.com — Home, About, Platform, Pipeline, Partners, News, Press
+    Releases, Careers and the Expanded Access Policy. 9 items on 2026-08-23. Bodies are Divi page-builder
+    markup delivered as rendered HTML.
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://ksqtx.com/wp-json
   tags:
@@ -133,8 +104,8 @@ apis:
 - aid: ksq-therapeutics:ksq-therapeutics-search-api
   name: KSQ Therapeutics Search API
   description: >-
-    Cross-type WordPress search over every REST-exposed post type. 48 results anonymously on
-    2026-08-23. Returns lightweight {id, title, url, type, subtype} records.
+    Cross-type WordPress search over every REST-exposed post type. 48 results anonymously on 2026-08-23.
+    Returns lightweight {id, title, url, type, subtype} records.
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://ksqtx.com/wp-json
   tags:
@@ -156,9 +127,9 @@ apis:
 - aid: ksq-therapeutics:ksq-therapeutics-discovery-api
   name: KSQ Therapeutics Discovery API
   description: >-
-    The WordPress REST route index, namespace index, registered post types, taxonomies and statuses.
-    349 routes across 9 namespaces on 2026-08-23. This is the only machine-readable contract KSQ
-    Therapeutics serves, and the source every derived artifact in this repo was built from.
+    The WordPress REST route index, namespace index, registered post types, taxonomies and statuses. 349
+    routes across 9 namespaces on 2026-08-23. This is the only machine-readable contract KSQ Therapeutics
+    serves, and the source every derived artifact in this repo was built from.
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://ksqtx.com/wp-json
   tags:
@@ -180,8 +151,8 @@ apis:
 - aid: ksq-therapeutics:ksq-therapeutics-taxonomy-api
   name: KSQ Therapeutics Taxonomy API
   description: >-
-    Category and post_tag term collections. Registered and anonymously reachable; one category term
-    ("Uncategorized", 5 posts) and zero tags on 2026-08-23.
+    Category and post_tag term collections. Registered and anonymously reachable; one category term ("Uncategorized",
+    5 posts) and zero tags on 2026-08-23.
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://ksqtx.com/wp-json
   tags:
@@ -203,8 +174,8 @@ apis:
 - aid: ksq-therapeutics:ksq-therapeutics-posts-api
   name: KSQ Therapeutics Posts API
   description: >-
-    The core WordPress post collection. Registered and anonymously reachable, but empty on this
-    deployment (X-WP-Total 0 on 2026-08-23) — KSQ publishes news through press_release instead.
+    The core WordPress post collection. Registered and anonymously reachable, but empty on this deployment
+    (X-WP-Total 0 on 2026-08-23) — KSQ publishes news through press_release instead.
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://ksqtx.com/wp-json
   tags:
@@ -226,8 +197,8 @@ apis:
 - aid: ksq-therapeutics:ksq-therapeutics-oembed-api
   name: KSQ Therapeutics oEmbed API
   description: >-
-    oEmbed 1.0 discovery for ksqtx.com URLs. Verified live anonymously on 2026-08-23 — provider_name
-    "KSQ Therapeutics", provider_url https://ksqtx.com.
+    oEmbed 1.0 discovery for ksqtx.com URLs. Verified live anonymously on 2026-08-23 — provider_name "KSQ
+    Therapeutics", provider_url https://ksqtx.com.
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://ksqtx.com/wp-json
   tags:
@@ -238,6 +209,24 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/ksq-therapeutics-oembed-api-openapi.yml
+  - type: Authentication
+    url: authentication/ksq-therapeutics-authentication.yml
+  - type: ErrorCatalog
+    url: errors/ksq-therapeutics-problem-types.yml
+  - type: Conventions
+    url: conventions/ksq-therapeutics-conventions.yml
+  - type: DataModel
+    url: data-model/ksq-therapeutics-data-model.yml
+- aid: ksq-therapeutics:ksq-therapeutics-press-release-api
+  name: KSQ Therapeutics Press Release API
+  description: Press Releases API operations on the ksqtx.com WordPress deployment.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://ksqtx.com/wp-json
+  tags:
+  - press_release
+  properties:
+  - type: OpenAPI
+    url: openapi/ksq-therapeutics-press-release-api-openapi.yml
   - type: Authentication
     url: authentication/ksq-therapeutics-authentication.yml
   - type: ErrorCatalog
