@@ -19,6 +19,19 @@ description: >-
   /llms.txt, and the open-source bioinformatics code in its public GitHub organization — all
   catalogued here.
 url: https://raw.githubusercontent.com/api-evangelist/ksq-therapeutics/refs/heads/main/apis.yml
+deliveryModel:
+  model: unknown
+  open_source: unknown
+  commercial: true
+  callable_host: true
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  - pricing
+  - repository-unlicensed
+  generated: '2026-08-28'
+  method: derived
 image: https://ksqtx.com/wp-content/uploads/2024/02/KSQ-logo-color-RegTM.png
 x-type: company
 x-source: harvest:secondary-market
