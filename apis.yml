@@ -42,16 +42,16 @@ created: '2026-08-23'
 modified: '2026-08-23'
 tags:
 - Company
-- Biotechnology
-- Life Sciences
-- Therapeutics
-- Oncology
-- Genomics
-- CRISPR
-- Gene Editing
-- Cell Therapy
-- Clinical Stage
-- Functional Genomics
+- biotechnology
+- life-sciences
+- therapeutics
+- oncology
+- genomics
+- crispr
+- gene-editing
+- cell-therapy
+- clinical-stage
+- functional-genomics
 - content-api
 tags_raw:
 - Company
@@ -76,7 +76,7 @@ apis:
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://ksqtx.com/wp-json
   tags:
-  - pages
+  - Pages
   tags_raw:
   - pages
   x-origin: platform-default
@@ -99,7 +99,7 @@ apis:
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://ksqtx.com/wp-json
   tags:
-  - media
+  - Media
   tags_raw:
   - media
   x-origin: platform-default
@@ -122,7 +122,7 @@ apis:
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://ksqtx.com/wp-json
   tags:
-  - search
+  - Search
   tags_raw:
   - search
   x-origin: platform-default
@@ -146,7 +146,7 @@ apis:
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://ksqtx.com/wp-json
   tags:
-  - discovery
+  - Discovery
   tags_raw:
   - discovery
   x-origin: platform-default
@@ -169,7 +169,7 @@ apis:
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://ksqtx.com/wp-json
   tags:
-  - taxonomy
+  - Taxonomy
   tags_raw:
   - taxonomy
   x-origin: platform-default
@@ -192,7 +192,7 @@ apis:
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://ksqtx.com/wp-json
   tags:
-  - posts
+  - Posts
   tags_raw:
   - posts
   x-origin: platform-default
@@ -215,7 +215,7 @@ apis:
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://ksqtx.com/wp-json
   tags:
-  - oembed
+  - oEmbed
   tags_raw:
   - oembed
   x-origin: platform-default
@@ -235,7 +235,8 @@ apis:
   description: Press Releases API operations on the ksqtx.com WordPress deployment.
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://ksqtx.com/wp-json
-  tags:
+  tags: []
+  tags_raw:
   - press_release
   properties:
   - type: OpenAPI

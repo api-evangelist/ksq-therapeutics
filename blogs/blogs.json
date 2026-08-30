@@ -1,0 +1,15 @@
+{
+  "repo": "ksq-therapeutics",
+  "feeds": [
+    {
+      "source": "https://ksqtx.com/partners/",
+      "error": "HTTPError"
+    },
+    {
+      "source": "https://ksqtx.com/news/",
+      "error": "HTTPError"
+    }
+  ],
+  "post_count": 0,
+  "fetched": "2026-08-30T22:33:40Z"
+}
