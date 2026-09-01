@@ -42,16 +42,16 @@ created: '2026-08-23'
 modified: '2026-08-23'
 tags:
 - Company
-- biotechnology
-- life-sciences
-- therapeutics
-- oncology
-- genomics
-- crispr
-- gene-editing
-- cell-therapy
-- clinical-stage
-- functional-genomics
+- Biotechnology
+- Life Sciences
+- Therapeutics
+- Oncology
+- Genomics
+- CRISPR
+- Gene Editing
+- Cell Therapy
+- Clinical Stage
+- Functional Genomics
 - content-api
 tags_raw:
 - Company
@@ -255,6 +255,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: License
+  name: GPL-3.0
+  url: https://github.com/ksqtx/TRACE/blob/main/LICENSE
 - type: Website
   url: https://ksqtx.com/
 - type: About
