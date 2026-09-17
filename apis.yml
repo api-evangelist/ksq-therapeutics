@@ -222,29 +222,6 @@ apis:
     url: conventions/ksq-therapeutics-conventions.yml
   - type: DataModel
     url: data-model/ksq-therapeutics-data-model.yml
-- aid: ksq-therapeutics:ksq-therapeutics-oembed-api
-  name: KSQ Therapeutics oEmbed API
-  description: >-
-    oEmbed 1.0 discovery for ksqtx.com URLs. Verified live anonymously on 2026-08-23 — provider_name "KSQ
-    Therapeutics", provider_url https://ksqtx.com.
-  humanURL: https://developer.wordpress.org/rest-api/
-  baseURL: https://ksqtx.com/wp-json
-  tags:
-  - oEmbed
-  tags_raw:
-  - oembed
-  x-origin: platform-default
-  properties:
-  - type: OpenAPI
-    url: openapi/ksq-therapeutics-oembed-api-openapi.yml
-  - type: Authentication
-    url: authentication/ksq-therapeutics-authentication.yml
-  - type: ErrorCatalog
-    url: errors/ksq-therapeutics-problem-types.yml
-  - type: Conventions
-    url: conventions/ksq-therapeutics-conventions.yml
-  - type: DataModel
-    url: data-model/ksq-therapeutics-data-model.yml
 - aid: ksq-therapeutics:ksq-therapeutics-press-release-api
   name: KSQ Therapeutics Press Release API
   description: Press Releases API operations on the ksqtx.com WordPress deployment.
@@ -256,6 +233,24 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/ksq-therapeutics-press-release-api-openapi.yml
+  - type: Authentication
+    url: authentication/ksq-therapeutics-authentication.yml
+  - type: ErrorCatalog
+    url: errors/ksq-therapeutics-problem-types.yml
+  - type: Conventions
+    url: conventions/ksq-therapeutics-conventions.yml
+  - type: DataModel
+    url: data-model/ksq-therapeutics-data-model.yml
+- aid: ksq-therapeutics:ksq-therapeutics-o-embed-api
+  name: KSQ Therapeutics o Embed API
+  description: oEmbed API operations on the ksqtx.com WordPress deployment.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://ksqtx.com/wp-json
+  tags:
+  - o Embed
+  properties:
+  - type: OpenAPI
+    url: openapi/ksq-therapeutics-o-embed-api-openapi.yml
   - type: Authentication
     url: authentication/ksq-therapeutics-authentication.yml
   - type: ErrorCatalog
