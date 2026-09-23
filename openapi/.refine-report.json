@@ -1,0 +1,39 @@
+{
+  "provider": "ksq-therapeutics",
+  "sources": [
+    "_original/ksq-therapeutics-content-openapi.yml"
+  ],
+  "outputs": [
+    "ksq-therapeutics-discovery-api-openapi.yml",
+    "ksq-therapeutics-media-api-openapi.yml",
+    "ksq-therapeutics-oembed-api-openapi.yml",
+    "ksq-therapeutics-pages-api-openapi.yml",
+    "ksq-therapeutics-posts-api-openapi.yml",
+    "ksq-therapeutics-press-release-api-openapi.yml",
+    "ksq-therapeutics-search-api-openapi.yml",
+    "ksq-therapeutics-taxonomy-api-openapi.yml"
+  ],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "1 archived document(s) dropped as subsets of other archived documents",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "ksq-therapeutics-content-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "superseded outputs removed: ksq-therapeutics-o-embed-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 8 total)"
+  ],
+  "skipped": [
+    "_original/ksq-therapeutics-press-releases-api-openapi.yml: archived document superseded by a larger archived document",
+    "ksq-therapeutics-discovery-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ksq-therapeutics-media-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ksq-therapeutics-o-embed-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ksq-therapeutics-pages-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ksq-therapeutics-posts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ksq-therapeutics-press-release-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ksq-therapeutics-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ksq-therapeutics-taxonomy-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
+}

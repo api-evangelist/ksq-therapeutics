@@ -1,9 +1,9 @@
 openapi: 3.2.0
 info:
-  title: KSQ Therapeutics Press Releases Press Release API
+  title: KSQ Therapeutics Content Press Release API
   version: wp/v2
   summary: Anonymously readable WordPress REST content surface behind ksqtx.com.
-  description: The read-only content surface KSQ Therapeutics exposes at https://ksqtx.com/wp-json. KSQ Therapeutics is a clinical-stage biotechnology company in Lexington, Massachusetts that applies genome-scale CRISPR/Cas9 functional genomic screening — its CRISPRomics platform — to identify therapeutic targets, and develops CRISPR/Cas9-engineered tumor-infiltrating lymphocyte (eTIL) therapies and small molecules in oncology. It runs no developer program and markets no product API. This document is an API Evangelist derivation of the WordPress REST route index the site publishes at /wp-json/, restricted to operations verified to return data anonymously on 2026-08-23. Every parameter below appears verbatim in that route index under the endpoint args. Write operations and the whole administrative surface — /wp/v2/settings, /wp/v2/users, /wp/v2/plugins, /wp/v2/themes, and the aioseo/v1, cky/v1, redirection/v1, divi/v1, wp-block-editor/v1, wp-site-health/v1 and wp-abilities/v1 namespaces — return HTTP 401 rest_forbidden anonymously and are deliberately excluded.
+  description: The read-only content surface KSQ Therapeutics exposes at https://ksqtx.com/wp-json.
   contact:
     name: KSQ Therapeutics
     url: https://ksqtx.com/
@@ -13,13 +13,13 @@ servers:
 - url: https://ksqtx.com/wp-json
   description: Production content API
 tags:
-- name: press_release
+- name: Press Release
   description: Press Releases API operations on the ksqtx.com WordPress deployment.
 paths:
   /wp/v2/press_release:
     get:
       tags:
-      - press_release
+      - Press Release
       operationId: listPressReleases
       summary: List press releases
       description: Lists the press_release custom post type — the KSQ Therapeutics news archive. 39 items returned anonymously on 2026-08-23 (X-WP-Total), spanning the Takeda and Ono collaborations, the CRISPR Therapeutics license agreement, the KSQ-001EX / KSQ-004EX / KSQ-4279 IND clearances and first-patient-dosed announcements, and conference poster presentations.
@@ -251,7 +251,7 @@ paths:
   /wp/v2/press_release/{id}:
     get:
       tags:
-      - press_release
+      - Press Release
       operationId: getPressRelease
       summary: Get a press release by id
       description: Returns a single press release.
